@@ -6,6 +6,6 @@ router.post("/", controller.post)
 router.get("/", controller.getAll)
 router.get("/:nome", controller.getByNome)
 router.put("/:artista", controller.updateArtista)
-router.delete("/:artista", controller.deleteArtista)
+router.delete("/:_id", controller.deleteArtista)
 
 module.exports = router

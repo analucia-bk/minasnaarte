@@ -1,9 +1,9 @@
 const Artistas = require("../model/artistas")
 
 exports.post = (req, res) => {
-    const estabelecimento = new Artistas(req.body)
-
-    artistas.save(function(err){
+    const mulheres = new Artistas(req.body)
+    console.log('teste', req.body)
+    mulheres.save(function(err){
         if (err) res.status(500).send(err)
         else{
             res.status(201).send({
@@ -15,20 +15,20 @@ exports.post = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
-    Estabelecimentos.find(function(err, artistas){
+    Artistas.find(function(err, Artistas){
         if (err) res.status(500).send(err);
-        res.status(200).send(artistas)
+        res.status(200).send(Artistas)
     })
 }
 
 exports.getByNome= (req, res) => {
     const nome= req.params.nome
-    Estabelecimentos.find({nome}, function(err, artistas){
+    Artistas.find({nome}, function(err, Artistas){
         if (err) res.status(500).send(err);
-        const nomes = estabelecimentos.map(artistas => {
+        const nomes = Artistas.map(Artistas => {
             return{
-                nome: artistas.nomeArtista,
-                telefone: artistas.site
+                nome: Artistas.nomeArtista,
+                telefone: Artistas.site
             }
         })
         res.status(200).send(nomes)
@@ -42,10 +42,10 @@ exports.updateArtista = (req, res) => {
         { nome: req.params.nome},
         { $set: req.body },
         { upsert: false },
-        (err, artistas) => {
+        (err, Artistas) => {
             if (err) return res.status(500).send(err);
 
-            if (!artistas) return res.status(401).send({ mensagem: "Artista não localizada" });
+            if (!Artistas) return res.status(401).send({ mensagem: "Artista não localizada" });
             
             return res.status(200).send({ mensagem: "Artista Cadastrada" });
         });    
@@ -53,14 +53,14 @@ exports.updateArtista = (req, res) => {
 
 
 exports.deleteArtista = (req, res, next) => {
-    Artistas.findOne({ "nome": req.params.nome }, function (err, artistas) {
+    Artistas.findByIdAndDelete({ "_id": req.params._id }, function (err, Artistas) {
         if (err) res.status(500).send(err);
 
-        if (!estabelecimento) return res.status(200).send({ mensagem: "Artista não localizada" });
+        if (!Artistas) return res.status(200).send({ mensagem: "Artista não localizada" });
 
-        estabelecimento.remove(function (err) {
+        Artistas.remove(function (err) {
             if (!err) {
-                res.status(200).send({ message: 'Cadastro realizado com sucesso' });
+                res.status(200).send({ message: 'Cadastro removido com sucesso' });
             }
         })
     })

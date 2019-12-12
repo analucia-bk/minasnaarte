@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ArtistasSchema = new mongoose.Schema({
 
-    nomeArtista: { type: String },
-    cnpj: { type: Number },
+    nome: { type: String },
+    cpf: { type: Number },
     categoria: { type: String },
     email: { type: String },
     telefone: { type: Number },

@@ -37,9 +37,9 @@ exports.getByNome= (req, res) => {
 
 
 
-exports.updateArtista = (req, res) => {
+    exports.updateArtista = (req, res) => {
     Artistas.findOneAndUpdate( 
-        { nome: req.params.nome},
+        {nome: req.params.nome},
         { $set: req.body },
         { upsert: false },
         (err, Artistas) => {
@@ -47,7 +47,7 @@ exports.updateArtista = (req, res) => {
 
             if (!Artistas) return res.status(401).send({ mensagem: "Artista não localizada" });
             
-            return res.status(200).send({ mensagem: "Artista Cadastrada" });
+            return res.status(200).send({ mensagem: "Cadastro Atualizado!" });
         });    
 };
 
@@ -56,7 +56,7 @@ exports.deleteArtista = (req, res, next) => {
     Artistas.findByIdAndDelete({ "_id": req.params._id }, function (err, Artistas) {
         if (err) res.status(500).send(err);
 
-        if (!Artistas) return res.status(200).send({ mensagem: "Artista não localizada" });
+        if (!Artistas) return res.status(404).send({ mensagem: "Artista não localizada" });
 
         Artistas.remove(function (err) {
             if (!err) {

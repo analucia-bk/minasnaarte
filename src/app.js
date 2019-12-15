@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 const bodyParser = require('body-parser')
 const app = express()
 
+app.use(express.static('public'));
+
  mongoose.connect("mongodb+srv://ana:ana@cluster0-e7zkg.mongodb.net/test?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false});
 //mongoose.connect("", {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false});
 

@@ -11,7 +11,7 @@ Put - Atualização de cadastro | HTTP 200 OK
 Delete - Exclusão de cadastro | HTTP 200 OK
 
 # Tecnologias Utilizadas / Apoio
-API REST
-NodeJS
-MongoDB
-Postman
+ * API REST
+* NodeJS
+* MongoDB
+* Postman
